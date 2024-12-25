@@ -36,7 +36,8 @@ public String register(@RequestBody RegistrationRequest registrationRequest) {
             // Assuming there are fields like username and password to check
             if (loginRequest.getPhNumber() != null && !loginRequest.getPhNumber().isEmpty() &&
                 loginRequest.getPassword() != null && !loginRequest.getPassword().isEmpty()) {
-                return "Success";
+                
+                return registrationService.loginUser(loginRequest);
             }
         }
         return "Please enter required details";

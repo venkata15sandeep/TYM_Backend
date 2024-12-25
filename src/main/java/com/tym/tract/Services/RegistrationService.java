@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.tym.tract.Models.Registration;
 import com.tym.tract.Repositories.RegistrationRepo;
+import com.tym.tract.RequestResponse.LoginRequest;
 import com.tym.tract.RequestResponse.RegistrationRequest;
 
 @Service
@@ -27,6 +28,23 @@ public class RegistrationService {
         }catch(Exception e){
             System.out.println(e);
             return "Unable to save Data";
+        }
+    }
+
+    public String loginUser(LoginRequest loginRequest){
+        try{
+            String phNumber = loginRequest.getPhNumber();
+            if(loginRequest.getPhNumber()!= null && !loginRequest.getPhNumber().isEmpty()){
+                System.out.println(registrationRepo.findPasswordByPhNumber(phNumber));
+                if(registrationRepo.findPasswordByPhNumber(phNumber) !=null && registrationRepo.findPasswordByPhNumber(phNumber).getPassword().equals(loginRequest.getPassword())){
+                    return "Login Successful";
+                }
+            }
+            return "Please Provide Valid Credentials";
+        
+        }catch(Exception e){
+            System.out.println(e);
+            return "Invalid user details";
         }
     }
 }
