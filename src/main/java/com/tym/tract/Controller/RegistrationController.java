@@ -16,20 +16,30 @@ public class RegistrationController {
     RegistrationService registrationService;
     
     @PostMapping("/register")
-    public String register(@RequestBody RegistrationRequest registrationRequest){
-        // Adding null checks
-        if(registrationRequest != null){
-            if(registrationRequest.getPhNumber() != null || !registrationRequest.getPhNumber().isEmpty()){            
-                return registrationService.registerUser(registrationRequest);
-            }
+public String register(@RequestBody RegistrationRequest registrationRequest) {
+    // Adding null checks for the registrationRequest and its fields
+    if (registrationRequest != null) {
+        if (registrationRequest.getPhNumber() != null && !registrationRequest.getPhNumber().isEmpty() &&
+            registrationRequest.getEmail() != null && !registrationRequest.getEmail().isEmpty() &&
+            registrationRequest.getPassword() != null && !registrationRequest.getPassword().isEmpty()) {
+                
+            return registrationService.registerUser (registrationRequest);
         }
-        return "Please enter required details";
     }
+    return "Please enter required details";
+}
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest) {
-        
-        return "Success";
+        // Adding null checks for loginRequest
+        if (loginRequest != null) {
+            // Assuming there are fields like username and password to check
+            if (loginRequest.getPhNumber() != null && !loginRequest.getPhNumber().isEmpty() &&
+                loginRequest.getPassword() != null && !loginRequest.getPassword().isEmpty()) {
+                return "Success";
+            }
+        }
+        return "Please enter required details";
     }
     
 }
