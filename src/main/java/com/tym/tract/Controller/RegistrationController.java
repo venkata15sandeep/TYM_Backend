@@ -17,7 +17,13 @@ public class RegistrationController {
     
     @PostMapping("/register")
     public String register(@RequestBody RegistrationRequest registrationRequest){
-        return registrationService.registerUser(registrationRequest);
+        // Adding null checks
+        if(registrationRequest != null){
+            if(registrationRequest.getPhNumber() != null || !registrationRequest.getPhNumber().isEmpty()){            
+                return registrationService.registerUser(registrationRequest);
+            }
+        }
+        return "Please enter required details";
     }
 
     @PostMapping("/login")
