@@ -2,8 +2,6 @@ package com.tym.tract.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tym.tract.Models.Registration;
 import com.tym.tract.Repositories.RegistrationRepo;
