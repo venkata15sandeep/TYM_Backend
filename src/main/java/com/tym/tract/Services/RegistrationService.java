@@ -2,6 +2,8 @@ package com.tym.tract.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tym.tract.Models.Registration;
 import com.tym.tract.Repositories.RegistrationRepo;
@@ -44,6 +46,17 @@ public class RegistrationService {
         }catch(Exception e){
             System.out.println(e);
             return "Invalid user details";
+        }
+    }
+
+    public Registration getUserDetails(String phNumber){
+        Registration registrationRow = null;
+        try{
+            registrationRow = registrationRepo.findByPhNumber(phNumber);
+            return registrationRow;
+        }catch(Exception e){
+            System.out.println(e);
+            return registrationRow;
         }
     }
 }
