@@ -35,7 +35,6 @@ public class RegistrationService {
         try{
             String phNumber = loginRequest.getPhNumber();
             if(loginRequest.getPhNumber()!= null && !loginRequest.getPhNumber().isEmpty()){
-                System.out.println(registrationRepo.findPasswordByPhNumber(phNumber));
                 if(registrationRepo.findPasswordByPhNumber(phNumber) !=null && registrationRepo.findPasswordByPhNumber(phNumber).getPassword().equals(loginRequest.getPassword())){
                     return "Login Successful";
                 }
