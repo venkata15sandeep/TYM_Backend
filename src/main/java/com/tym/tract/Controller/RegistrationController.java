@@ -7,15 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tym.tract.Models.Registration;
 import com.tym.tract.RequestResponse.GenericResponse;
 import com.tym.tract.RequestResponse.LoginRequest;
 import com.tym.tract.RequestResponse.RegistrationRequest;
 import com.tym.tract.Services.RegistrationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 public class RegistrationController {
 
@@ -33,6 +32,7 @@ public String register(@RequestBody RegistrationRequest registrationRequest) {
             return registrationService.registerUser (registrationRequest);
         }
     }
+    log.error("Please enter required details");
     return "Please enter required details";
 }
 
@@ -47,6 +47,7 @@ public String register(@RequestBody RegistrationRequest registrationRequest) {
                 return registrationService.loginUser(loginRequest);
             }
         }
+        log.error("Please enter required details");
         return "Please enter required details";
     }
 

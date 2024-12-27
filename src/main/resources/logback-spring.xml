@@ -1,0 +1,41 @@
+<configuration>
+	<!-- Define Base Log Directory -->
+	<property name="LOG_BASE_DIR" value="C:/Users/tarun/OneDrive/Documents/MyLogs" />
+
+	<!-- Console Appender -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Rolling File Appender -->
+	<appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<append>true</append>
+
+		<!-- Size and Time-Based Rolling Policy -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- File pattern includes a dynamic date-based folder -->
+			<fileNamePattern>${LOG_BASE_DIR}/%d{yyyy-MM-dd}/tract.%i.log</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize> <!-- Rotate files after 50MB -->
+			<maxHistory>10</maxHistory> <!-- Keep logs for the last 10 days -->
+			<totalSizeCap>500MB</totalSizeCap> <!-- Limit total size of all log files -->
+		</rollingPolicy>
+
+		<!-- Log message format -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Async Appender -->
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="ROLLING_FILE" />
+	</appender>
+
+	<!-- Root Logger -->
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ASYNC" />
+	</root>
+</configuration>
