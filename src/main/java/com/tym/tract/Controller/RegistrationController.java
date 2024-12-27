@@ -12,6 +12,9 @@ import com.tym.tract.RequestResponse.GenericResponse;
 import com.tym.tract.RequestResponse.LoginRequest;
 import com.tym.tract.RequestResponse.RegistrationRequest;
 import com.tym.tract.Services.RegistrationService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class RegistrationController {
