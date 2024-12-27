@@ -9,4 +9,5 @@ import com.tym.tract.Models.Registration;
 @Repository
 public interface RegistrationRepo extends JpaRepository<Registration, String> {
     public Registration findPasswordByPhNumber(String phNumber);
+    public Registration findByPhNumber(String phNumber);
 }
