@@ -46,4 +46,15 @@ public class RegistrationService {
             return "Invalid user details";
         }
     }
+
+    public Registration getUserDetails(String phNumber){
+        Registration registrationRow = null;
+        try{
+            registrationRow = registrationRepo.findByPhNumber(phNumber);
+            return registrationRow;
+        }catch(Exception e){
+            System.out.println(e);
+            return registrationRow;
+        }
+    }
 }
